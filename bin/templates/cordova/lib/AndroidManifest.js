@@ -58,6 +58,20 @@ AndroidManifest.prototype.setPackageId = function (pkgId) {
     return this;
 };
 
+Android.prototype.getApplication = function () {
+    let application = this.doc.getroot().find('./application');
+    return {
+        isActivityResizable: function () {
+            return application.attrib['android:resizableActivity'];
+        },
+        setActivityResizable: function(resizable) {
+            // Set the default/convert boolean to string
+            application.attrib['android:resizableActivity'] = resizable === 'false' || resizable === false ? 'false' : 'true';
+            return this;
+        }
+    }
+};
+
 AndroidManifest.prototype.getActivity = function () {
     var activity = this.doc.getroot().find('./application/activity');
     return {

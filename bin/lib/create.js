@@ -268,6 +268,12 @@ exports.create = function (project_path, config, options, events) {
 
     var safe_activity_name = config.android_activityName() || options.activityName || 'MainActivity';
     var target_api = check_reqs.get_target();
+    var resizableActivity = config.android_resizableActivity();
+
+    // Defaults to true if not a valid value, or if the value is missing.
+    if (resizableActivity !== 'true' && resizableActivity !== 'false') {
+        resizableActivity = 'true';
+    }
 
     // Make the package conform to Java package types
     return exports.validatePackageName(package_name)
@@ -322,6 +328,7 @@ exports.create = function (project_path, config, options, events) {
                 var manifest = new AndroidManifest(path.join(project_template_dir, 'AndroidManifest.xml'));
                 manifest.setPackageId(package_name)
                     .getActivity().setName(safe_activity_name);
+                manifest.getApplication().setActivityResizable(resizableActivity);
 
                 var manifest_path = path.join(app_path, 'AndroidManifest.xml');
                 manifest.write(manifest_path);
