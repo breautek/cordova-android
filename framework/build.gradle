@@ -23,10 +23,8 @@ ext {
 }
 
 buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
+    apply from: 'repositories.gradle'
+    repositories repos
 
     dependencies {
         // The gradle plugin and the maven plugin have to be updated after each version of Android
@@ -38,10 +36,8 @@ buildscript {
 }
 
 allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+    apply from: 'repositories.gradle'
+    repositories repos
 }
 
 apply plugin: 'com.android.library'
