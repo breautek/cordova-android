@@ -19,7 +19,9 @@
 package org.apache.cordova;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.json.JSONException;
 
@@ -40,8 +42,10 @@ public class PluginManager {
     private static final int SLOW_EXEC_WARNING_THRESHOLD = Debug.isDebuggerConnected() ? 60 : 16;
 
     // List of service entries
-    private final LinkedHashMap<String, CordovaPlugin> pluginMap = new LinkedHashMap<String, CordovaPlugin>();
-    private final LinkedHashMap<String, PluginEntry> entryMap = new LinkedHashMap<String, PluginEntry>();
+    // private final LinkedHashMap<String, CordovaPlugin> pluginMap = new LinkedHashMap<String, CordovaPlugin>();
+    // private final LinkedHashMap<String, PluginEntry> entryMap = new LinkedHashMap<String, PluginEntry>();
+    private final Map<String, CordovaPlugin> pluginMap = Collections.synchronizedMap(new LinkedHashMap<String, CordovaPlugin>());
+    private final Map<String, PluginEntry> entryMap = Collections.synchronizedMap(new LinkedHashMap<String, PluginEntry>());
 
     private final CordovaInterface ctx;
     private final CordovaWebView app;
