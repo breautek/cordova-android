@@ -27,6 +27,8 @@ import android.content.pm.PackageManager;
 /**
  * This class provides reflective methods for permission requesting and checking so that plugins
  * written for cordova-android 5.0.0+ can still compile with earlier cordova-android versions.
+ * 
+ * @deprecated Use CordovaPermissionManager instead
  */
 public class PermissionHelper {
     private static final String LOG_TAG = "CordovaPermissionHelper";
@@ -79,8 +81,6 @@ public class PermissionHelper {
         Arrays.fill(requestResults, PackageManager.PERMISSION_GRANTED);
 
         try {
-            // This one is deprecated - see https://github.com/apache/cordova-android/issues/592
-            plugin.onRequestPermissionResult(requestCode, permissions, requestResults);
             plugin.onRequestPermissionsResult(requestCode, permissions, requestResults);
         } catch (JSONException e) {
             LOG.e(LOG_TAG, "JSONException when delivering permissions results", e);

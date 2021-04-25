@@ -397,7 +397,7 @@ public class CordovaPlugin {
     public void requestPermissions(int requestCode) {
     }
 
-    /*
+    /**
      * Called by the WebView implementation to check for geolocation permissions, can be used
      * by other Java methods in the event that a plugin is using this as a dependency.
      *
