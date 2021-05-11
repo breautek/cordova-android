@@ -116,7 +116,7 @@ if (hasBuildExtras2) {
 }
 
 // Apply updates that might come from build-extra.
-privateHelpers.applyCordovaConifgCustomization()
+privateHelpers.applyCordovaConfigCustomization()
 
 // Set property defaults after extension .gradle files.
 if (ext.cdvDebugSigningPropertiesFile == null && file('../debug-signing.properties').exists()) {

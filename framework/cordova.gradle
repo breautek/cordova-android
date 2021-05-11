@@ -150,7 +150,7 @@ def doGetConfigPreference(name, defaultValue) {
     return ret
 }
 
-def doApplyCordovaConifgCustomization() {
+def doApplyCordovaConfigCustomization() {
     // Apply user overide properties that comes from the "--gradleArg=-P" parameters
     if (project.hasProperty('cdvMinSdkVersion')) {
         cordovaConfig.MIN_SDK_VERSION = Integer.parseInt('' + cdvMinSdkVersion)
@@ -182,12 +182,12 @@ ext {
     cordovaConfig = parsedJson
 
     // Apply Gradle Properties
-    doApplyCordovaConifgCustomization()
+    doApplyCordovaConfigCustomization()
 
     // These helpers are shared, but are not guaranteed to be stable / unchanged.
     privateHelpers = {}
     privateHelpers.getProjectTarget = { doGetProjectTarget() }
-    privateHelpers.applyCordovaConifgCustomization = { doApplyCordovaConifgCustomization() }
+    privateHelpers.applyCordovaConfigCustomization = { doApplyCordovaConfigCustomization() }
     privateHelpers.extractIntFromManifest = { name -> doExtractIntFromManifest(name) }
     privateHelpers.extractStringFromManifest = { name -> doExtractStringFromManifest(name) }
     privateHelpers.ensureValueExists = { filePath, props, key -> doEnsureValueExists(filePath, props, key) }
