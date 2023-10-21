@@ -181,6 +181,10 @@ task cdvPrintProps {
 android {
     namespace cordovaConfig.PACKAGE_NAMESPACE
 
+    buildFeatures {
+        buildConfig true
+    }
+
     defaultConfig {
         versionCode cdvVersionCode ?: new BigInteger("" + privateHelpers.extractIntFromManifest("versionCode"))
         applicationId cordovaConfig.PACKAGE_NAMESPACE
@@ -248,8 +252,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     if (cdvReleaseSigningPropertiesFile) {
