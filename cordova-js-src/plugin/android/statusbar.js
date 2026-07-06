@@ -26,6 +26,11 @@ var statusBar = {};
 const statusBarScript = document.createElement('script');
 document.head.appendChild(statusBarScript);
 
+/**
+ * Sets the visibility of the status bar, which will only work if Android EdgeToEdge is disabled.
+ * If cordova-plugin-statusbar is used, the call will be forwarded to `window.StatusBar.show` or
+ * `window.StatusBar.hide` of the plugin.
+ */
 Object.defineProperty(statusBar, 'visible', {
     configurable: false,
     enumerable: true,
@@ -52,6 +57,14 @@ Object.defineProperty(statusBar, 'visible', {
     }
 });
 
+/**
+ * Sets the background color of the visible status bar.
+ * Supports valid CSS color values, e.g. `rebeccapurple`, `#RRGGBBAA`, `rgb(255 0 153)`.
+ * 
+ * If cordova-plugin-statusbar is installed, calls are forwarded to the plugin API:
+ * `window.StatusBar.backgroundColorByHexString`
+ * See {@link https://s.apache.org/cdv-plugin-statusbar} for cordova-plugin-statusbar details.
+ */
 Object.defineProperty(statusBar, 'setBackgroundColor', {
     configurable: false,
     enumerable: false,
